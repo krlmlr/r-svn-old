@@ -32,7 +32,7 @@ R-%-patched: R/branches/R-%-branch/configure
 
 BOOTSTRAP := $(shell bootstrap)
 
-%/configure:
+%/configure: %
 	cd "$(dir $@)" && \
 	$(SVN) update --set-depth=infinity
 	touch "$@"
