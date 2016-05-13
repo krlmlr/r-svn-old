@@ -12,9 +12,7 @@ matrix:
             - subversion
             - ccache
             - libreadline-dev
-            - libX11-dev
-            - libX11-dev
-            - libxt-dev
+            - libx11-dev
             - libxt-dev
             - zlib1g-dev
             - libbz2-dev
