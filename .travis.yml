@@ -22,4 +22,4 @@ matrix:
 
 install: make R-devel
 
-script: make R-devel/build
+script: make -j2 R-devel/build
