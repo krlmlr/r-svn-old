@@ -1,0 +1,25 @@
+language: c
+cache: ccache
+sudo: false
+matrix:
+  include:
+    - addons:
+        apt:
+          packages:
+            - ca-certificates
+            - build-essential
+            - gfortran
+            - subversion
+            - ccache
+            - libreadline-dev
+            - libX11-dev
+            - libX11-dev
+            - libxt-dev
+            - libxt-dev
+            - zlib1g-dev
+            - libbz2-dev
+            - liblzma-dev
+            - libpcre3-dev
+            - libcurl4-openssl-dev
+
+script: make R-devel
