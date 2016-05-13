@@ -30,7 +30,7 @@ R-%-patched: R/branches/R-%-branch/configure
 
 # -- Implementation -----------------------------------------
 
-BOOTSTRAP := $(shell bootstrap)
+BOOTSTRAP := $(shell ./bootstrap)
 
 %/configure: %
 	cd "$(dir $@)" && \
