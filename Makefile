@@ -4,10 +4,21 @@ all: R/trunk
 
 # -- High-level targets -------------------------------------
 
-.PHONY: R-devel
+.PHONY: R-devel update
+
+update cleanup: R
+	cd R && svn $@
 
 R-devel:
 	$(MAKE) R/trunk/bin/R
+	ln -fs "$$(dirname $$(dirname '$<'))" "$@"
+
+R-%:
+	$(MAKE) R/tags/$@/bin/R
+	ln -fs "$$(dirname $$(dirname '$<'))" "$@"
+
+R-%-patched:
+	$(MAKE) R/branches/$(subst patched,branch,$@)/bin/R
 	ln -fs "$$(dirname $$(dirname '$<'))" "$@"
 
 
@@ -15,9 +26,14 @@ R-devel:
 
 R:
 	svn co --depth=immediates https://svn.r-project.org/R && \
-	cd R &&	svn update --set-depth=immediates branches tags
+	cd R &&	\
+	cd branches && svn update --set-depth=immediates && cd .. && \
+	cd tags && svn update --set-depth=immediates && cd .. && \
+	true
 
-R/%/configure: R
+R/.svn/wc.db: R
+
+R/%/configure: R R/%
 	cd "$(dir $@)" && \
 	svn update --set-depth=infinity
 	touch "$@"
