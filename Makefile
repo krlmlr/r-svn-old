@@ -26,7 +26,7 @@ R-%-patched: R/branches/R-%-branch/configure
 
 # -- Implementation -----------------------------------------
 
-BOOTSTRAP := $(shell [ -d R ] || make R)
+BOOTSTRAP := $(shell [ -d R ] || make R 2>&1 )
 
 R:
 	svn co --depth=immediates https://svn.r-project.org/R && \
