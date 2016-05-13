@@ -1,6 +1,8 @@
-all: R/trunk
+all: R
 
--include Makefile.all
+EXISTING_LINKS := $(wildcard R-*)
+
+all: $(addsuffix /bin/R,$(EXISTING_LINKS))
 
 # -- High-level targets -------------------------------------
 
@@ -9,20 +11,22 @@ all: R/trunk
 update cleanup: R
 	cd R && svn $@
 
-R-devel:
-	$(MAKE) R/trunk/bin/R
-	ln -fs "$$(dirname $$(dirname '$<'))" "$@"
+R-devel: R/trunk/configure
+	rm -f "$@"
+	ln -s "$(dir $<)" "$@"
 
-R-%:
-	$(MAKE) R/tags/$@/bin/R
-	ln -fs "$$(dirname $$(dirname '$<'))" "$@"
+R-%: R/tags/R-%/configure
+	rm -f "$@"
+	ln -s "$(dir $<)" "$@"
 
-R-%-patched:
-	$(MAKE) R/branches/$(subst patched,branch,$@)/bin/R
-	ln -fs "$$(dirname $$(dirname '$<'))" "$@"
+R-%-patched: R/branches/R-%-branch/configure
+	rm -f "$@"
+	ln -s "$(dir $<)" "$@"
 
 
 # -- Implementation -----------------------------------------
+
+BOOTSTRAP := $(shell [ -d R ] || make R)
 
 R:
 	svn co --depth=immediates https://svn.r-project.org/R && \
@@ -31,19 +35,17 @@ R:
 	cd tags && svn update --set-depth=immediates && cd .. && \
 	true
 
-R/.svn/wc.db: R
-
-R/%/configure: R R/%
+%/configure:
 	cd "$(dir $@)" && \
 	svn update --set-depth=infinity
 	touch "$@"
 
-R/%/Makefile: R/%/configure
+%/Makefile: %/configure
 	./configure "$(dir $@)"
 
-R/%/bin/R: R/%/Makefile R/.svn/wc.db
+%/bin/R: %/Makefile R/.svn/wc.db
 	$(MAKE) -C "$(dir $<)"
 
 .FORCE:
 
-.PRECIOUS: R/%/configure R/%/Makefile
+.PRECIOUS: %/configure %/Makefile
