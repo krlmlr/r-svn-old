@@ -20,4 +20,6 @@ matrix:
             - libpcre3-dev
             - libcurl4-openssl-dev
 
-script: make R-devel
+install: make R-devel
+
+script: make R-devel/build
