@@ -26,14 +26,7 @@ R-%-patched: R/branches/R-%-branch/configure
 
 # -- Implementation -----------------------------------------
 
-BOOTSTRAP := $(shell [ -d R ] || make R 2>&1 )
-
-R:
-	svn co --depth=immediates https://svn.r-project.org/R && \
-	cd R &&	\
-	cd branches && svn update --set-depth=immediates && cd .. && \
-	cd tags && svn update --set-depth=immediates && cd .. && \
-	true
+BOOTSTRAP := $(shell bootstrap)
 
 %/configure:
 	cd "$(dir $@)" && \

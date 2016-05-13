@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+if [ -d R ]; then exit 0; fi
+
+echo "Initializing R subdirectory" 1>&2
+
+SVN=${SVN:-svn}
+
+${SVN} co --depth=immediates https://svn.r-project.org/R
+cd R
+cd branches && svn update --set-depth=immediates && cd ..
+cd tags && svn update --set-depth=immediates && cd ..
