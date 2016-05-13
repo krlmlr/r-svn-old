@@ -3,8 +3,7 @@ cache: ccache
 sudo: false
 matrix:
   include:
-    - os: linux
-      addons:
+    - addons:
         apt:
           packages:
             - ca-certificates
@@ -20,7 +19,6 @@ matrix:
             - liblzma-dev
             - libpcre3-dev
             - libcurl4-openssl-dev
-    - os: osx
 
 install: make R-devel
 
