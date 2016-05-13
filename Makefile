@@ -2,7 +2,7 @@ all: R
 
 EXISTING_LINKS := $(wildcard R-*)
 
-all: $(addsuffix /bin/R,$(EXISTING_LINKS))
+all: $(addsuffix /build,$(EXISTING_LINKS))
 
 SVN := svn
 
@@ -40,8 +40,9 @@ BOOTSTRAP := $(shell bootstrap)
 %/Makefile: %/configure
 	./configure "$(dir $@)"
 
-%/bin/R: %/Makefile R/.svn/wc.db
+%/build: %/Makefile R/.svn/wc.db
 	$(MAKE) -C "$(dir $<)"
+	touch "$<"
 
 .FORCE:
 
