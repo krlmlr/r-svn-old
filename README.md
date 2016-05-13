@@ -1,4 +1,4 @@
-# Compiling R from source using sparse SVN checkouts
+# Compiling R from source using sparse SVN checkouts [![Build Status](https://travis-ci.org/krlmlr/r-svn.svg?branch=master)](https://travis-ci.org/krlmlr/r-svn)
 
 Check out R-devel, R 3.2.5 and R 3.3-patched from Subversion:
 
