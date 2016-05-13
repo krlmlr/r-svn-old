@@ -2,10 +2,19 @@ all: R/trunk
 
 -include Makefile.all
 
-R:
-	svn co --depth=immediates https://svn.r-project.org/R
+# -- High-level targets -------------------------------------
 
-R/trunk: R
+.PHONY: R-devel
+
+R-devel:
+	$(MAKE) R/trunk/bin/R
+	ln -fs "$$(dirname $$(dirname '$<'))" "$@"
+
+
+# -- Implementation -----------------------------------------
+
+R:
+	svn co --depth=immediates https://svn.r-project.org/R && \
 	cd R &&	svn update --set-depth=immediates branches tags
 
 R/%/configure: R
