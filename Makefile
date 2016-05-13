@@ -26,7 +26,7 @@ R/%/Makefile: R/%/configure
 	./configure "$(dir $@)"
 
 R/%/bin/R: R/%/Makefile R/.svn/wc.db
-	make -C "$(dir $<)"
+	$(MAKE) -C "$(dir $<)"
 
 .FORCE:
 
