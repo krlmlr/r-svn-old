@@ -20,6 +20,8 @@ matrix:
             - libpcre3-dev
             - libcurl4-openssl-dev
 
+before_install: echo "SVN := svn --quiet" > Makevars
+
 install: make R-devel
 
 script: make -j2 R-devel/build
