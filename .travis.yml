@@ -22,6 +22,8 @@ matrix:
 
 before_install: echo "SVN := svn --quiet" > Makevars
 
-install: make R-devel
+install:
+  - make --version
+  - make R-devel
 
 script: make -j2 R-devel/build
