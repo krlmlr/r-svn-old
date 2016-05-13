@@ -27,4 +27,4 @@ install:
   - make R-devel
 
 script:
-  - make -j2 R-devel/build
+  - make -dr R-devel/build
