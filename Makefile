@@ -4,12 +4,16 @@ EXISTING_LINKS := $(wildcard R-*)
 
 all: $(addsuffix /bin/R,$(EXISTING_LINKS))
 
+SVN := svn
+
+-include Makevars
+
 # -- High-level targets -------------------------------------
 
 .PHONY: R-devel update
 
 update cleanup: R
-	cd R && svn $@
+	cd R && $(SVN) $@
 
 R-devel: R/trunk/configure
 	rm -f "$@"
@@ -30,7 +34,7 @@ BOOTSTRAP := $(shell bootstrap)
 
 %/configure:
 	cd "$(dir $@)" && \
-	svn update --set-depth=infinity
+	$(SVN) update --set-depth=infinity
 	touch "$@"
 
 %/Makefile: %/configure
