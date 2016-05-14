@@ -45,7 +45,9 @@ BOOTSTRAP := $(shell ./bootstrap)
 	touch "$@"
 
 # SVN 1.6 compatibility:
-R/.svn/wc.db: R/.svn/all-wcprops
+%/build: %/Makefile R/.svn/all-wcprops
+	$(MAKE) -C "$(dir $<)"
+	touch "$@"
 
 .FORCE:
 
