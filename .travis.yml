@@ -28,4 +28,8 @@ install:
   - make R-devel
 
 script:
-  - make -dr R-devel/build
+  - make
+  - [ $(make | wc -l) -eq 1 ]
+  - make update
+  - [ $(make | wc -l) -gt 1 ]
+  - [ $(make | wc -l) -eq 1 ]
