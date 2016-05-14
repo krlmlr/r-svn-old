@@ -29,7 +29,7 @@ install:
 
 script:
   - make
-  - [ $(make | wc -l) -eq 1 ]
+  - test $(make | wc -l) -eq 1
   - make update
-  - [ $(make | wc -l) -gt 1 ]
-  - [ $(make | wc -l) -eq 1 ]
+  - test $(make | wc -l) -gt 1
+  - test $(make | wc -l) -eq 1
