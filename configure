@@ -4,6 +4,8 @@ set -e
 
 cd "$1"
 
+# Adapted from https://stat.ethz.ch/pipermail/r-sig-debian/2012-August/001935.html
+
 CC="ccache gcc"					\
 CFLAGS="-ggdb -pipe -std=gnu99 -Wall -pedantic" \
 CXX="ccache g++"				\
