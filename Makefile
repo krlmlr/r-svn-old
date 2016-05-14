@@ -15,24 +15,24 @@ SVN := svn
 update cleanup: R
 	cd R && $(SVN) $@
 
-R-devel: R/trunk/configure
+R-devel: R/trunk
 	rm -f "$@"
-	ln -s "$(dir $<)" "$@"
+	ln -s "$<" "$@"
 
-R-%: R/tags/R-%/configure
+R-%: R/tags/R-%
 	rm -f "$@"
-	ln -s "$(dir $<)" "$@"
+	ln -s "$<" "$@"
 
-R-%-patched: R/branches/R-%-branch/configure
+R-%-patched: R/branches/R-%-branch
 	rm -f "$@"
-	ln -s "$(dir $<)" "$@"
+	ln -s "$<" "$@"
 
 
 # -- Implementation -----------------------------------------
 
 BOOTSTRAP := $(shell ./bootstrap)
 
-%/configure: %
+%/configure:
 	cd "$(dir $@)" && \
 	$(SVN) update --set-depth=infinity
 	touch "$@"
