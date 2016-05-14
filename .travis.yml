@@ -24,7 +24,7 @@ before_install: echo "SVN := svn --quiet" > Makevars
 
 install:
   - make --version
-  - make R-devel
+  - make R-3-2-5
 
 script:
   - make -dr R-devel/build
