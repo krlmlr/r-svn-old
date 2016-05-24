@@ -27,3 +27,5 @@ make update
 Compilations are cached using `ccache`, which is required. See [`.travis.yml`](.travis.yml) for other dependencies.
 
 It just works, mostly because the R build system just works.  The [`configure` script](configure) is based on the [R-sig-Debian post](https://stat.ethz.ch/pipermail/r-sig-debian/2012-August/001935.html) by Dirk Eddelbuettel.
+
+This project checks out the R sources from Subversion. See the [r-source](https://github.com/wch/r-source) project for a Git mirror of Subversion.
