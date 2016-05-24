@@ -3,7 +3,7 @@
 Check out R-devel, R 3.2.5 and R 3.3-patched from Subversion:
 
 ```
-make R-devel R-3-2-5 R-3-3-branch
+make R-devel R-3-2-5 R-3-3-patched
 ```
 
 Build these three versions of R (triggered only if the sources have been updated since the last build):
