@@ -4,7 +4,8 @@ sudo: required
 dist: trusty
 matrix:
   include:
-    - addons:
+    - os: linux
+      addons:
         apt:
           packages:
             - ca-certificates
