@@ -22,13 +22,12 @@ matrix:
             - libpcre3-dev
             - libcurl4-openssl-dev
     - os: osx
-      install:
+      before_install:
         - brew update
         - brew install ccache
 
-before_install: echo "SVN := svn --quiet" > Makevars
-
 install:
+  - echo "SVN := svn --quiet" > Makevars
   - make --version
   - make R-devel
 
