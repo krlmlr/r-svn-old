@@ -6,6 +6,7 @@ cd "$1"
 
 # Adapted from https://stat.ethz.ch/pipermail/r-sig-debian/2012-August/001935.html
 
+WANT_R_FRAMEWORK=true \
 CC="ccache gcc"					\
 CFLAGS="-ggdb -pipe -std=gnu99 -Wall -pedantic" \
 CXX="ccache g++"				\
@@ -16,6 +17,7 @@ MAKE="make -j4"					\
 ./configure 					\
     --prefix=/usr/local/lib/R-devel 		\
     --enable-R-shlib 				\
+    --enable-memory-profiling                   \
     --with-blas 				\
     --with-lapack 				\
     --with-readline 				\
